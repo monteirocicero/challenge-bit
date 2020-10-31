@@ -14,17 +14,45 @@ class OrderUseCaseTest {
     lateinit var orderUseCase: OrderUseCase
 
     @Test
-    fun shoudGetItemWithSucess() {
+    fun shouldGetItemWithSucess() {
         // given
-        val beginDate = LocalDate.of(2016,10,5)
-        val finalDate = LocalDate.of(2016,10,10)
+        val beginDate = LocalDate.of(2016,10,1)
+        val finalDate = LocalDate.of(2016,10,3)
 
         // when
         val ordersOnDate = orderUseCase.getItemByDate(beginDate, finalDate)
 
         // when
         Assertions.assertTrue(ordersOnDate.isNotEmpty())
-        Assertions.assertTrue(ordersOnDate.size == 10)
+        Assertions.assertTrue(ordersOnDate.size == 3)
+    }
+
+    @Test
+    fun shouldGetItemWithSucessWhenRangeIsBeforeInitInterval() {
+        // given
+        val beginDate = LocalDate.of(2016,9,1)
+        val finalDate = LocalDate.of(2016,10,3)
+
+        // when
+        val ordersOnDate = orderUseCase.getItemByDate(beginDate, finalDate)
+
+        // when
+        Assertions.assertTrue(ordersOnDate.isNotEmpty())
+        Assertions.assertTrue(ordersOnDate.size == 3)
+    }
+
+    @Test
+    fun shouldNotGetItemWithSucess() {
+        // given
+        val beginDate = LocalDate.of(2016,8,1)
+        val finalDate = LocalDate.of(2016,9,1)
+
+        // when
+        val ordersOnDate = orderUseCase.getItemByDate(beginDate, finalDate)
+
+        // when
+        Assertions.assertTrue(ordersOnDate.isEmpty())
+
     }
 
 }

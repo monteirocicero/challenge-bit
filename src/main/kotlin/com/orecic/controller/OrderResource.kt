@@ -7,9 +7,13 @@ import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Produces
+import javax.inject.Inject
 
-@Controller("/")
-class OrderResource(private val orderClient: OrderClient) {
+@Controller("/api")
+class OrderResource {
+
+    @Inject
+    lateinit var orderClient: OrderClient
 
     @Get("order")
     @Produces(MediaType.APPLICATION_JSON)

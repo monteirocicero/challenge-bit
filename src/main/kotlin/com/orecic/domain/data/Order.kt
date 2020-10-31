@@ -15,7 +15,7 @@ data class Order(val name: String, val code: String,
         return convertToLocalDateViaInstant(parsedDate)
     }
 
-    fun convertToLocalDateViaInstant(dateToConvert: Date): LocalDate? {
+    private fun convertToLocalDateViaInstant(dateToConvert: Date): LocalDate? {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate()

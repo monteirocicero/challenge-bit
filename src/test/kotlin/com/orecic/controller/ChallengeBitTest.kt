@@ -16,7 +16,7 @@ class ChallengeBitTest {
 
     @Test
     fun testGetOrder() {
-        val request: HttpRequest<Any> = HttpRequest.GET("/order")
+        val request: HttpRequest<Any> = HttpRequest.GET("/api/order")
         val body = client.toBlocking().retrieve(request)
         Assertions.assertNotNull(body)
     }
