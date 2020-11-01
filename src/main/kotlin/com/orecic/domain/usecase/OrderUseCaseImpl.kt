@@ -1,7 +1,7 @@
-package com.orecic.domain
+package com.orecic.domain.usecase
 
 import com.orecic.domain.data.Order
-import com.orecic.infraestructure.external.OrderClient
+import com.orecic.infraestructure.gateway.OrderGateway
 import org.slf4j.LoggerFactory
 import java.time.LocalDate
 import javax.inject.Inject
@@ -12,13 +12,12 @@ import javax.inject.Singleton
 class OrderUseCaseImpl : OrderUseCase {
 
     @Inject
-    lateinit var orderClient: OrderClient
+    lateinit var orderGateway: OrderGateway
 
      override fun getItemByDate(beginDate: LocalDate, finalDate: LocalDate): List<Order> {
         logger.info("m=getItemByDate beginDate={} finalDate={}", beginDate, finalDate)
 
-        val orders = orderClient.fetchOrders()
-
+        val orders = orderGateway.getOrders()
         val list: MutableList<Order> = mutableListOf()
         orders.blockingForEach{
             if (it.dateFormatted()?.let { it1 -> validateRangeOfDate(beginDate, finalDate, it1) }!!) {

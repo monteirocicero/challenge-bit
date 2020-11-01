@@ -1,6 +1,6 @@
 package com.orecic.usecase
 
-import com.orecic.domain.OrderUseCase
+import com.orecic.domain.usecase.OrderUseCase
 import io.micronaut.test.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

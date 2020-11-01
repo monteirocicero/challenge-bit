@@ -1,4 +1,4 @@
-package com.orecic.domain
+package com.orecic.domain.usecase
 
 import com.orecic.domain.data.Order
 import java.time.LocalDate
